@@ -5,17 +5,11 @@ services:
   backend:
     build:
       context: .
-      args:
-        - NODE_ENV=${NODE_ENV}
-        - PORT=${PORT}
-        - USER=${USER}
-        - PASSWORD=${PASSWORD}
-        - DB_NAME=${DB_NAME}
+    
     ports:
-      - "${PORT}:${PORT}"
+      - "5032:5032"
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - PORT=${PORT}
+      - PORT=5032
     volumes:
       - app:/app
     depends_on:
@@ -29,7 +23,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
     volumes:
-      - mongo-data:/data/docker-dbs
+      - mongo-data: /data/docker-dbs
 
   mongo-express:
     image: mongo-express
