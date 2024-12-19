@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . .
 
+EXPOSE 5032
+
 CMD  npm start
