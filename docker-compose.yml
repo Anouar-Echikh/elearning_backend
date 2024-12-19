@@ -24,7 +24,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
     volumes:
-      - mongo-data: /data/docker-dbs
+      - mongo-data:/data/docker-dbs
 
   mongo-express:
     image: mongo-express
