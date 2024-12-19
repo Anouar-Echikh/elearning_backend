@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+
+  backend:
+    build:
+      context: .
+      args:
+        - NODE_ENV=${NODE_ENV}
+        - PORT=${PORT}
+        - USER=${USER}
+        - PASSWORD=${PASSWORD}
+        - DB_NAME=${DB_NAME}
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+    volumes:
+      - app:/app
+    depends_on:
+      - db
+
+  db:
+    image: mongo:4.0.28
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    volumes:
+      - mongo-data:/data/docker-dbs
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 1234
+      ME_CONFIG_MONGODB_URL: mongodb://root:1234@db:27017/  # Direct connection to the db service
+      ME_CONFIG_BASICAUTH: false
+
+# Define named volumes
+volumes:
+  mongo-data:
+    driver: local
