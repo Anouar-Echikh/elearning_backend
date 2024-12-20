@@ -10,7 +10,7 @@ services:
       - "5032:5032"
     environment:
       - PORT=5032
-      - MONGO_DB_URI=mongodb://root:1234@db:27017/elearning?authSource=admin
+      - MONGO_DB_URI=mongodb://root:1234@db:27017/elearning?authSource=admin&replicaSet=rs0
     volumes:
       - app:/app
     depends_on:
@@ -24,10 +24,11 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
-   
+    command: ["mongod", "--replSet", "rs0"]  # Enable replica set 
     volumes:
       - mongo-data:/data/db
-      
+      - ./init-replica.js:/docker-entrypoint-initdb.d/init-replica.js
+
   mongo-express:
     image: mongo-express
     restart: always
