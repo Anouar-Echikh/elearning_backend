@@ -24,9 +24,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
-    command: ["--replSet", "rs0"]  # Enable replica set
+    command: ["--replSet", "rs0"]  # Enable replica set 
     volumes:
       - mongo-data:/data/docker-dbs
+      - ./init-replica.js:/var/www/vhosts/e-learning-academy.tn/e-learning-academy.tn/admin.e-learning-academy.tn/init-replica.js
 
   mongo-express:
     image: mongo-express
