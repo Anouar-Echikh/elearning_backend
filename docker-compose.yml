@@ -10,7 +10,7 @@ services:
       - "5032:5032"
     environment:
       - PORT=5032
-      - MONGO_DB_URI=mongodb://root:1234@db:27017/elearning
+      - MONGO_DB_URI=mongodb://root:1234@db:27017/elearning?authSource=admin
     volumes:
       - app:/app
     depends_on:
