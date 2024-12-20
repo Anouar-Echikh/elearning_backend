@@ -34,7 +34,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: 1234
-      ME_CONFIG_MONGODB_URL: mongodb://root:1234@db:27017/  # Direct connection to the db service
+      ME_CONFIG_MONGODB_URL: mongodb://root:1234@db:5021/  # Direct connection to the db service
      
 
 # Define named volumes
