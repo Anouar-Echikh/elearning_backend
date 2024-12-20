@@ -41,3 +41,5 @@ services:
 volumes:
   mongo-data:
     driver: local
+  app:  # Declare the app volume here
+    driver: local  # You can specify the driver, but the default is "local"
