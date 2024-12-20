@@ -1,16 +1,14 @@
 version: '3.8'
 
 services:
-
   backend:
     build:
       context: .
-    
     ports:
       - "5032:5032"
     environment:
-      - PORT=5032
-      - MONGO_DB_URI=mongodb://root:1234@db:27017/elearning?authSource=admin&replicaSet=rs0
+      PORT: 5032
+      MONGO_DB_URI: mongodb://root:1234@db:27017/elearning?authSource=admin
     volumes:
       - app:/app
     depends_on:
@@ -20,11 +18,10 @@ services:
     image: mongo:4.0.28
     restart: always
     ports:
-      - "5021:27017"  # Expose MongoDB on port 5021 on the host machine
+      - "5021:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
-    command: ["mongod", "--replSet", "rs0"]  # Enable replica set 
     volumes:
       - mongo-data:/data/db
       - ./init-replica.js:/docker-entrypoint-initdb.d/init-replica.js
@@ -37,11 +34,10 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: 1234
-      ME_CONFIG_MONGODB_URL: mongodb://root:1234@db:27017/  # Use db:27017 for internal connection
-    
-# Define named volumes
+      ME_CONFIG_MONGODB_URL: mongodb://root:1234@db:27017/
+
 volumes:
   mongo-data:
     driver: local
-  app:  # Declare the app volume here
-    driver: local  # You can specify the driver, but the default is "local"
+  app:
+    driver: local
