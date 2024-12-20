@@ -19,7 +19,7 @@ services:
     image: mongo:4.0.28
     restart: always
     ports:
-      - "5021:27017"
+      - "5021:27017"  # Expose MongoDB on port 5021 on the host machine
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
@@ -34,9 +34,8 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: 1234
-      ME_CONFIG_MONGODB_URL: mongodb://root:1234@db:5021/  # Direct connection to the db service
-     
-
+      ME_CONFIG_MONGODB_URL: mongodb://root:1234@db:27017/  # Use db:27017 for internal connection
+    
 # Define named volumes
 volumes:
   mongo-data:
