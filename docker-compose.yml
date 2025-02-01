@@ -19,10 +19,10 @@ services:
     restart: always
 
   db:
-    image: mongo:4.0.28
+    image: appmern/mongo:v2  
     restart: always
     ports:
-      - "5021:27017"  # Expose MongoDB on port 5021 on the host machine
+      - "5021:27017"  # Expose MongoDB on port 5021 on the host machine 
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 1234
