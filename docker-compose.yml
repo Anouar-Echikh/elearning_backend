@@ -1,3 +1,4 @@
+specifier les tags sur ce fichier:
 version: '3.8'
 
 services:
@@ -19,14 +20,21 @@ services:
     restart: always
 
   db:
-    image: appmern/mongo:v1
+    image: mongo:4.0.28
     restart: always
-    
-    
+    ports:
+      - "5021:27017"  # Expose MongoDB on port 5021 on the host machine
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    command: ["mongod", "--replSet", "rs0"]  # Enable replica set
+    volumes:
+      - mongo-data:/data/db
+      
     
 
   mongo-express:
-    image: appmern/mongo-express:v2
+    image: mongo-express
     restart: always
     ports:
       - "8081:8081"
