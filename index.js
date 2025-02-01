@@ -8,5 +8,5 @@ startServer(PORT)
     watchCollectionChanges(); // Start watching for collection changes
   })
   .catch(error => {
-    console.error("Failed to start the server:", error);
+    console.error("Failed to start  the server:", error);
   });
