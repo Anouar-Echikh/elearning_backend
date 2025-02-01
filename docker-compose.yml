@@ -21,8 +21,7 @@ services:
   db:
     image: appmern/mongo:v1
     restart: always
-    ports:
-      - "5021:27017"  # Expose MongoDB on port 5021 on the host machine
+    
     
     
 
